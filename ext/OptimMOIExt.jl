@@ -1,13 +1,11 @@
 module OptimMOIExt
 
 using Optim
-using Optim.LinearAlgebra
+using Optim.LinearAlgebra: rmul! 
 import MathOptInterface as MOI
 
 function __init__()
-    @static if isdefined(Base, :get_extension)
-        setglobal!(Optim, :Optimizer, Optimizer)
-    end
+    setglobal!(Optim, :Optimizer, Optimizer)
 end
 
 mutable struct Optimizer{T} <: MOI.AbstractOptimizer
@@ -423,7 +421,7 @@ MOI.get(::Optimizer, ::MOI.DualStatus) = MOI.NO_SOLUTION
 
 function MOI.get(model::Optimizer, attr::MOI.ObjectiveValue)
     MOI.check_result_index_bounds(model, attr)
-    val = minimum(model.results)
+    val = Optim.minimum(model.results)
     if model.sense == MOI.MAX_SENSE
         val = -val
     end

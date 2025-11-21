@@ -30,13 +30,13 @@ end
 
 
 function Base.summary(io::IO, s::NGMRES)
-    print(io, "Nonlinear GMRES preconditioned with ")
+    print(io, "Nonlinear GMRES (preconditioned with ")
     summary(io, s.nlprecon)
     print(io, ")")
     return
 end
 function Base.summary(io::IO, s::OACCEL)
-    print(io, "O-ACCEL preconditioned with ")
+    print(io, "O-ACCEL (preconditioned with ")
     summary(io, s.nlprecon)
     print(io, ")")
     return
@@ -355,7 +355,8 @@ function update_state!(
     Aview = view(state.A, 1:curw, 1:curw)
     bview = view(state.b, 1:curw)
     # The outer max is to avoid δ=0, which may occur if A=0, e.g. at numerical convergence
-    δ = method.ϵ0 * max(maximum(diag(Aview)), method.ϵ0)
+    # Note that Base.maximum !== maximum
+    δ = method.ϵ0 * max(Base.maximum(@view(Aview[diagind(Aview)])), method.ϵ0)
     try
         α .= (Aview + δ * I) \ bview
     catch e

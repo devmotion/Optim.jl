@@ -36,7 +36,7 @@ function maximize(
     f,
     x0::AbstractArray,
     method::AbstractOptimizer,
-    options = Optim.Options()
+    options = Options()
 )
     fmax = let f=f
         x -> -f(x)
@@ -48,7 +48,7 @@ function maximize(
     g,
     x0::AbstractArray,
     method::AbstractOptimizer,
-    options = Optim.Options()
+    options = Options()
 )
     fmax = let f=f
         x -> -f(x)
@@ -65,7 +65,7 @@ function maximize(
     h,
     x0::AbstractArray,
     method::AbstractOptimizer,
-    options = Optim.Options()
+    options = Options()
 )
     fmax = let f=f
         x -> -f(x)
