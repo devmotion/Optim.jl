@@ -2,7 +2,6 @@ name = "Optim"
 uuid = "429524aa-4258-5aef-a3af-852621145aeb"
 version = "1.14.0"
 
-
 [deps]
 Compat = "34da2185-b29b-5c13-b0c7-acf172513d20"
 EnumX = "4e289a0a-7415-4d19-859d-a7e5c4648b56"
@@ -32,7 +31,7 @@ ForwardDiff = "0.10, 1"
 LineSearches = "7.4.0"
 LinearAlgebra = "<0.0.1, 1.6"
 MathOptInterface = "1.17"
-NLSolversBase = "7.9.0"
+NLSolversBase = "7.9.0, 8"
 NaNMath = "0.3.2, 1"
 OptimTestProblems = "2.0.3"
 PositiveFactorizations = "0.2.2"
